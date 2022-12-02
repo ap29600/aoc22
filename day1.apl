@@ -5,5 +5,3 @@ c ← {{+/,⎕csv⍵⍬4}¨((0≠≢¨)⊆⊢)⍵} f  ⍝ split by empty lines, 
 
 ⎕ ← 'part 1: ', ⌈/c       ⍝ take the max
 ⎕ ← 'part 2: ', +/c[3↑⍒c] ⍝ sort descending and sum the first 3
-
-
