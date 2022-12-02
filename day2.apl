@@ -2,13 +2,17 @@
 
 ⎕IO←0
 
-⍝ m1 ← (∘.⊢⍨1 2 3)+3×3 3⍴1 2 0 0 1 2 2 0 1 ⍝ scores for each move
-⍝ c  ← 3 3⍴2 0 1 0 1 2 1 2 0               ⍝ move choice matrix
-⍝ m2 ← m1[{⍵[0], ⍵⌷c}¨⍳3 3]                ⍝ scores for part 2
+⍝ s1[i j] is the outcome of playing move j against move i.
+s1 ← 1 0 ¯1⌽3 3⍴⍳3
+⍝ s2[i j] is the move to get outcome j against move i.
+⍝ s2 can be found by squaring the permuations because
+⍝ the rows of s1 are 3-cycles and square to their inverse.
+s2 ← ((⊂⌷⊢)⍤1)s1
 
-⍝ the code above precomputes these matrices
-m1 ← 3 3⍴4 8 3 1 5 9 7 2 6
-m2 ← 3 3⍴3 4 8 1 5 9 2 6 7
+⍝ full score: (value of move played) + 3 × outcome
+m1 ← (1+3 3⍴⍳3)+3×s1
+⍝ same, but use s2 to choose the move for the desired outcome
+m2 ← m1[s2,⍨¨⍉3 3⍴⍳3]
 
 f ← 3|'ABCXYZ'⍸⎕CSV⍠'Separator' ' '⊢'day2.txt' ⍝ moves as a n×2 matrix
 ⎕ ← 'part 1:', +/m1[↓f]
