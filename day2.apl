@@ -1,5 +1,6 @@
 #!/usr/bin/dyalogscript
 
+⎕←'day 2'
 ⎕IO←0
 
 ⍝ s1[i j] is the outcome of playing move j against move i.
@@ -15,5 +16,5 @@ m1 ← (1+3 3⍴⍳3)+3×s1
 m2 ← m1({⍺[⍵]}⍤1)s2
 
 f ← ¯65 ¯88(+⍤1)⎕ucs{⍵[;0 2]}↑⊃⎕nget'day2.txt'1
-⎕ ← 'part 1:', +/m1[↓f]
-⎕ ← 'part 2:', +/m2[↓f]
+⎕ ← '  part 1:', +/m1[↓f]
+⎕ ← '  part 2:', +/m2[↓f]
