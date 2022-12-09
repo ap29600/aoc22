@@ -1,9 +1,7 @@
 #!/usr/bin/dyalogscript
 
 ⎕io←0
-m ← (/⍨/)↓⊃¨⍎¨@1⊢⍉↑' '(≠⊆⊢)¨⊃⎕nget'day9.txt'1
-s ← ↓+⍀↑(1 0)(¯1 0)(0 1)(0 ¯1)⌷⍨⊂'RLUD'⍳⊃m
-follows ← {p ← 0 0 ⋄ (⊂0 0),{p+←(××(1⍨<⌈/⍤|))⍵-p ⋄ p}¨{⍵/⍨~0,2≡/⍵}⍵}
-
-⎕←'  part 1:',≢∪follows⊢ s
-⎕←'  part 2:',≢∪follows⍣9⊢ s
+s ← ↓⍉+\9 11∘.○0j1*'RULD'⍳{(⍎⍤(2∘↓)¨⍵)/⊃¨⍵}⊃⎕nget'day9.txt'1
+chain ← {p ← ⍺2⍴0 ⋄ {p+←(××⍤1 0(1∘< ⌈/⍤|)) (⍵⍪¯1↓p)-p ⋄ ¯1↑p}¨⍵,⍺⍴⊢/⍵}
+⎕←'  part 1:',≢∪1 chain s
+⎕←'  part 2:',≢∪9 chain s
