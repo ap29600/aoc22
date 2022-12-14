@@ -1,7 +1,7 @@
 #!/usr/bin/dyalogscript
 
 ⎕io←0
-x ← ⎕json¨↑(×⍤≢¨⊆⊢)⊃⎕nget'test.txt'1
+x ← ⎕json¨↑(×⍤≢¨⊆⊢)⊃⎕nget'day13.txt'1
 div ← ⎕json¨'[[2]]' '[[6]]'
 
 cmp ← {
